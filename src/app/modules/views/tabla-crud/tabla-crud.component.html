@@ -1,0 +1,42 @@
+<main>
+  <h1>CRUD VANGUARDIA</h1>
+  <p-table [value]="clientes">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Saldo</th>
+        <th>Activo</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+      <tr class="text-center">
+        <td>{{ cliente.codigo }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.apellido }}</td>
+        <td>{{ cliente.saldo | currency : "L. " }}</td>
+        @if (cliente.activo) {
+        <td><span class="green-dot"></span></td>
+        }@else {
+        <td><span class="red-dot"></span></td>
+        }
+        <td>
+          <p-button
+            pTooltip="Editar"
+            icon="pi pi-pencil"
+            class="mr-2"
+            (onClick)="editCliente(cliente.codigo)"
+          ></p-button>
+          <p-button
+            pTooltip="Borrar"
+            icon="pi pi-times"
+            severity="danger"
+            (onClick)="deleteCliente(cliente.codigo)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</main>
