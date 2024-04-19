@@ -1,6 +1,15 @@
 <main>
   <h1>CRUD VANGUARDIA</h1>
-  <p-table [value]="clientes">
+  <div class="flex justify-content-end flex-wrap">
+    <div class="m-2">
+      <p-button
+        label="Nuevo Cliente"
+        icon="pi pi-plus"
+        (onClick)="newCliente()"
+      ></p-button>
+    </div>
+  </div>
+  <p-table class="text-xs	" [value]="clientes">
     <ng-template pTemplate="header">
       <tr>
         <th>Código</th>
