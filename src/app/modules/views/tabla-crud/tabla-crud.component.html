@@ -1,49 +1,62 @@
-<main>
-  <h1>CRUD VANGUARDIA</h1>
+<main class="px-3 lg:px-8 mt-3 lg:mt-8">
+  <article
+    class="flex flex-column w-full justify-content-center lg:justify-content-start"
+  >
+    <h1 class="m-0 text-center lg:text-left">CRUD VANGUARDIA</h1>
+    <small class="text-gray-300 text-center lg:text-left"
+      >Keneth Moises Cubas Lopez - 32111363</small
+    >
+  </article>
   <div class="flex justify-content-end flex-wrap">
-    <div class="m-2">
+    <div class="m-2 w-full lg:w-max">
       <p-button
+        styleClass="text-xs lg:text-base w-full"
         label="Nuevo Cliente"
         icon="pi pi-plus"
         (onClick)="newCliente()"
       ></p-button>
     </div>
   </div>
-  <p-table class="text-xs	" [value]="clientes">
+  <p-table styleClass="border-round overflow-hidden" [value]="clientes">
     <ng-template pTemplate="header">
       <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Saldo</th>
-        <th>Activo</th>
-        <th></th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2">Código</th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2">Nombre</th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2">Apellido</th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2">Saldo</th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2">Activo</th>
+        <th class="surface-800 text-xs lg:text-base text-white p-2"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-cliente>
-      <tr class="text-center">
-        <td>{{ cliente.codigo }}</td>
-        <td>{{ cliente.nombre }}</td>
-        <td>{{ cliente.apellido }}</td>
-        <td>{{ cliente.saldo | currency : "L. " }}</td>
-        @if (cliente.activo) {
-        <td><span class="green-dot"></span></td>
-        }@else {
-        <td><span class="red-dot"></span></td>
-        }
-        <td>
-          <p-button
-            pTooltip="Editar"
-            icon="pi pi-pencil"
-            class="mr-2"
-            (onClick)="editCliente(cliente.codigo)"
-          ></p-button>
-          <p-button
-            pTooltip="Borrar"
-            icon="pi pi-times"
-            severity="danger"
-            (onClick)="deleteCliente(cliente.codigo)"
-          ></p-button>
+      <tr class="table-row-w-conditional-view">
+        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.codigo }}</td>
+        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.nombre }}</td>
+        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.apellido }}</td>
+        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.saldo | currency : "L. " }}</td>
+        <td class="p-2 surface-300 text-xs lg:text-base">
+          @if (cliente.activo) {
+          <span class="green-dot"></span>
+          }@else {
+          <span class="red-dot"></span>
+          }
+        </td>
+        <td class="p-2 surface-300 text-xs lg:text-base text-right">
+          <span class="flex gap-2 w-full justify-content-end">
+            <p-button
+              pTooltip="Editar"
+              icon="pi pi-pencil"
+              class="element-conditional-view"
+              (onClick)="editCliente(cliente.codigo)"
+            ></p-button>
+            <p-button
+              pTooltip="Borrar"
+              icon="pi pi-times"
+              severity="danger"
+              class="element-conditional-view"
+              (onClick)="deleteCliente(cliente.codigo)"
+            ></p-button>
+          </span>
         </td>
       </tr>
     </ng-template>

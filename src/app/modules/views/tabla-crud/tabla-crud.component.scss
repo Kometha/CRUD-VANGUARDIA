@@ -15,3 +15,14 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+.element-conditional-view {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.table-row-w-conditional-view:hover {
+  .element-conditional-view {
+    opacity: 1 !important;
+  }
+}
