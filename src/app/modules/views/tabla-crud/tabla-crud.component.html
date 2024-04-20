@@ -20,28 +20,28 @@
   <p-table styleClass="border-round overflow-hidden" [value]="clientes">
     <ng-template pTemplate="header">
       <tr>
-        <th class="surface-800 text-xs lg:text-base text-white p-2">Código</th>
-        <th class="surface-800 text-xs lg:text-base text-white p-2">Nombre</th>
-        <th class="surface-800 text-xs lg:text-base text-white p-2">Apellido</th>
-        <th class="surface-800 text-xs lg:text-base text-white p-2">Saldo</th>
-        <th class="surface-800 text-xs lg:text-base text-white p-2">Activo</th>
-        <th class="surface-800 text-xs lg:text-base text-white p-2"></th>
+        <th class="text-xs lg:text-base p-2">Código</th>
+        <th class="text-xs lg:text-base p-2">Nombre</th>
+        <th class="text-xs lg:text-base p-2">Apellido</th>
+        <th class="text-xs lg:text-base p-2">Saldo</th>
+        <th class="text-xs lg:text-base p-2">Activo</th>
+        <th class="text-xs lg:text-base p-2"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-cliente>
       <tr class="table-row-w-conditional-view">
-        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.codigo }}</td>
-        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.nombre }}</td>
-        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.apellido }}</td>
-        <td class="p-2 surface-300 text-xs lg:text-base">{{ cliente.saldo | currency : "L. " }}</td>
-        <td class="p-2 surface-300 text-xs lg:text-base">
+        <td class="p-2 text-xs lg:text-base">{{ cliente.codigo }}</td>
+        <td class="p-2 text-xs lg:text-base">{{ cliente.nombre }}</td>
+        <td class="p-2 text-xs lg:text-base">{{ cliente.apellido }}</td>
+        <td class="p-2 text-xs lg:text-base">{{ cliente.saldo | currency : "L. " }}</td>
+        <td class="p-2 text-xs lg:text-base">
           @if (cliente.activo) {
           <span class="green-dot"></span>
           }@else {
           <span class="red-dot"></span>
           }
         </td>
-        <td class="p-2 surface-300 text-xs lg:text-base text-right">
+        <td class="p-2 text-xs lg:text-base text-right">
           <span class="flex gap-2 w-full justify-content-end">
             <p-button
               pTooltip="Editar"
