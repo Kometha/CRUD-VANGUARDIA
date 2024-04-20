@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Cliente } from '../../interfaces/cliente.interface';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogModalView } from '../dialog-modal/dialog-modal.component';
+import { CrudVanguardiaService } from '../../services/crud-vanguardia.service';
 
 @Component({
   selector: 'app-tabla-crud',
@@ -12,7 +13,7 @@ export class TablaCrudView {
   ref!: DynamicDialogRef;
   clientes: Cliente[] = [];
 
-  constructor(private dialogService: DialogService) {
+  constructor(private dialogService: DialogService, private crudService: CrudVanguardiaService) {
     this.clientes = [
       {
         codigo: 1,
@@ -63,8 +64,12 @@ export class TablaCrudView {
     });
   }
 
+
+
   deleteCliente(clienteCode: number) {
-    console.log(`Borrando al cliente ${clienteCode}`);
+    this.crudService.CLIENTES.deleteCliente(clienteCode).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   newCliente() {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ClienteForm } from '../../interfaces/clienteForm.interface';
+import { CrudVanguardiaService } from '../../services/crud-vanguardia.service';
 
 @Component({
   selector: 'app-dialog-modal',
@@ -8,6 +10,25 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 })
 export class DialogModalView {
   ref!: DynamicDialogRef;
-  constructor() {}
 
+  constructor(private crudService: CrudVanguardiaService) {}
+
+  formCliente: ClienteForm = {
+    nombre: '',
+    apellido: '',
+    direccion: '',
+    saldo: 0,
+  };
+
+  refresh() {
+    this.crudService.CLIENTES.getClients().subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  saveCliente() {
+    this.crudService.CLIENTES.createCliente(this.formCliente).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }
