@@ -23,6 +23,7 @@
         <th class="text-xs lg:text-base p-2">Código</th>
         <th class="text-xs lg:text-base p-2">Nombre</th>
         <th class="text-xs lg:text-base p-2">Apellido</th>
+        <th class="text-xs lg:text-base p-2">Dirrecion</th>
         <th class="text-xs lg:text-base p-2">Saldo</th>
         <th class="text-xs lg:text-base p-2">Activo</th>
         <th class="text-xs lg:text-base p-2"></th>
@@ -30,12 +31,14 @@
     </ng-template>
     <ng-template pTemplate="body" let-cliente>
       <tr class="table-row-w-conditional-view">
-        <td class="p-2 text-xs lg:text-base">{{ cliente.codigo }}</td>
+        <td class="p-2 text-xs lg:text-base">{{ cliente.id }}</td>
         <td class="p-2 text-xs lg:text-base">{{ cliente.nombre }}</td>
         <td class="p-2 text-xs lg:text-base">{{ cliente.apellido }}</td>
+        <td class="p-2 text-xs lg:text-base">{{ cliente.apellido }}</td>
+
         <td class="p-2 text-xs lg:text-base">{{ cliente.saldo | currency : "L. " }}</td>
         <td class="p-2 text-xs lg:text-base">
-          @if (cliente.activo) {
+          @if (!cliente.inactivo) {
           <span class="green-dot"></span>
           }@else {
           <span class="red-dot"></span>
@@ -47,14 +50,14 @@
               pTooltip="Editar"
               icon="pi pi-pencil"
               class="element-conditional-view"
-              (onClick)="editCliente(cliente.codigo)"
+              (onClick)="editCliente(cliente)"
             ></p-button>
             <p-button
               pTooltip="Borrar"
               icon="pi pi-times"
               severity="danger"
               class="element-conditional-view"
-              (onClick)="deleteCliente(cliente.codigo)"
+              (onClick)="deleteCliente(cliente.id)"
             ></p-button>
           </span>
         </td>

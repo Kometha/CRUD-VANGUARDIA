@@ -13,62 +13,45 @@ export class TablaCrudView {
   ref!: DynamicDialogRef;
   clientes: Cliente[] = [];
 
-  constructor(private dialogService: DialogService, private crudService: CrudVanguardiaService) {
-    this.clientes = [
-      {
-        codigo: 1,
-        nombre: 'Juan',
-        apellido: 'Pérez',
-        saldo: 1000,
-        activo: true,
-      },
-      {
-        codigo: 2,
-        nombre: 'María',
-        apellido: 'Gómez',
-        saldo: 500,
-        activo: false,
-      },
-      {
-        codigo: 3,
-        nombre: 'Pedro',
-        apellido: 'López',
-        saldo: 2000,
-        activo: true,
-      },
-      {
-        codigo: 4,
-        nombre: 'Ana',
-        apellido: 'Martínez',
-        saldo: 800,
-        activo: false,
-      },
-      {
-        codigo: 5,
-        nombre: 'Carlos',
-        apellido: 'Rodríguez',
-        saldo: 1500,
-        activo: true,
-      },
-    ];
+  constructor(
+    private dialogService: DialogService,
+    private crudService: CrudVanguardiaService
+  ) {
+    this.getClientes();
   }
 
-  editCliente(clienteCode: number) {
+  getClientes() {
+    this.crudService.CLIENTES.getClientes().subscribe((res) => {
+      if (!res || !res.length) {
+        console.log('No hay clientes');
+        return;
+      }
+      this.clientes = res;
+    });
+  }
+
+  editCliente(cliente: Cliente) {
     this.ref = this.dialogService.open(DialogModalView, {
       header: 'Editar cliente',
       width: '50%',
       closeOnEscape: true,
       data: {
-        clienteCode,
+        cliente,
       },
+    });
+
+    this.ref.onClose.subscribe(() => {
+      this.getClientes();
     });
   }
 
-
-
   deleteCliente(clienteCode: number) {
     this.crudService.CLIENTES.deleteCliente(clienteCode).subscribe((res) => {
-      console.log(res);
+      if (!res) {
+        console.log('Error al eliminar');
+        return;
+      }
+      this.getClientes();
     });
   }
 
@@ -77,6 +60,10 @@ export class TablaCrudView {
       header: 'Nuevo cliente',
       width: '50%',
       closeOnEscape: true,
+    });
+
+    this.ref.onClose.subscribe(() => {
+      this.getClientes();
     });
   }
 }

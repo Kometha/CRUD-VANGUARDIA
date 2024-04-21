@@ -3,4 +3,5 @@ export interface ClienteForm {
   apellido: string;
   direccion: string;
   saldo: number;
+  inactivo: boolean;
 }

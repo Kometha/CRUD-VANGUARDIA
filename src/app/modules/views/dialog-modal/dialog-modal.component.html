@@ -51,15 +51,30 @@
       </span>
     </div>
   </div>
+  @if(cliente){
+    <label for="inactivo">Inactivo</label>
+    <div class="col-6">
+      <p-inputSwitch [(ngModel)]="formCliente.inactivo"></p-inputSwitch>
+    </div>
+  }
 
   <div class="flex justify-content-center flex-wrap">
     <div class="m-2">
-      <p-button
-        label="Guardar"
-        (onClick)="saveCliente()"
-        icon="pi pi-save"
-        class="p-button-success"
-      ></p-button>
+      @if(!cliente){
+        <p-button
+          label="Guardar"
+          (onClick)="saveCliente()"
+          icon="pi pi-save"
+          class="p-button-success"
+        ></p-button>
+      }@else {
+        <p-button
+          label="Actualizar"
+          (onClick)="updateCliente()"
+          icon="pi pi-save"
+          class="p-button-success"
+        ></p-button>
+      }
     </div>
     <div class="m-2">
       <p-button
